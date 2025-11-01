@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_CommandLineTool()
         self.ui.setupUi(self)
         self.connect_signals()
+        self.ui.idLabel.setWordWrap(True)
 
     def connect_signals(self):
         self.ui.sendButton.clicked.connect(self.on_send_clicked)
@@ -70,6 +71,7 @@ class MainWindow(QMainWindow):
         db_ref.child(rand_str).set(encrypted_blob)
         output_display = f"{key_str} : {rand_str}"
         self.ui.idLabel.setText(output_display)
+        self.ui.statusbar.showMessage("Data encrypted and stored successfully!", 2000)
         self.ui.sendTextEdit.clear()
 
     def on_fetch_clicked(self):
