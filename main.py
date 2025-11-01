@@ -44,6 +44,12 @@ class MainWindow(QMainWindow):
         return encrypted_blob, key
 
     @staticmethod
+    def decrypt_string(encrypted_blob: bytes, key: bytes) -> str:
+        cipher = Fernet(key)
+        decrypted_bytes = cipher.decrypt(encrypted_blob)
+        return decrypted_bytes.decode('utf-8')
+
+    @staticmethod
     def random_string(length: int =  10) -> str:
         characters = string.ascii_letters + string.digits
         return ''.join(random.choice(characters) for _ in range(length))
