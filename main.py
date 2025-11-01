@@ -3,6 +3,7 @@ from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
 from ui_generated import Ui_CommandLineTool
+from encrypt import encrypt_string, random_string
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
