@@ -51,10 +51,11 @@ class MainWindow(QMainWindow):
         if not plain_text:
             self.ui.idLabel.setText("ID - (Please enter text to send)")
             return
-        _encrypted_blob, key = self.encrypt_string(plain_text)
+        encrypted_blob, key = self.encrypt_string(plain_text)
         rand_str = self.random_string()
         key_str = key.decode('utf-8')
-        #db_ref.child(rand_str).set(encrypted_blob_str)
+        encrypted_blob = encrypted_blob.decode('utf-8')
+        db_ref.child(rand_str).set(encrypted_blob)
         output_display = f"{key_str} : {rand_str}"
         self.ui.idLabel.setText(output_display)
         self.ui.sendTextEdit.clear()
