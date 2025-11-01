@@ -2,6 +2,7 @@ import sys
 import random
 import string
 import firebase_admin
+import base64
 
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow
@@ -53,8 +54,12 @@ class MainWindow(QMainWindow):
             return
         encrypted_blob, key = self.encrypt_string(plain_text)
         rand_str = self.random_string()
-        key_str = key.decode('utf-8')
-        encrypted_blob = encrypted_blob.decode('utf-8')
+
+        key_b64 = base64.b64encode(key)
+        enc_blob_b64 = base64.b64encode(encrypted_blob)
+
+        key_str = key_b64.decode('utf-8')
+        encrypted_blob = enc_blob_b64.decode('utf-8')
         db_ref.child(rand_str).set(encrypted_blob)
         output_display = f"{key_str} : {rand_str}"
         self.ui.idLabel.setText(output_display)
