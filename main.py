@@ -12,7 +12,14 @@ class MainWindow(QMainWindow):
         self.connect_signals()
 
     def connect_signals(self):
-        pass
+        self.ui.sendButton.clicked.connect(self.on_send_clicked)
+        self.ui.fetchButton.clicked.connect(self.on_fetch_clicked)
+    
+    def on_send_clicked(self):
+        print("Send button clicked")
+
+    def on_fetch_clicked(self):
+        print("Fetch button clicked")
 
 
 if __name__ == "__main__":
