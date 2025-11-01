@@ -1,11 +1,26 @@
 import sys
 import random
 import string
+import firebase_admin
+
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow
-
 from ui_generated import Ui_CommandLineTool
 from cryptography.fernet import Fernet
+from firebase_admin import credentials, db
+
+cred = credentials.Certificate("serviceAccountKey.json")
+
+DATABASE_URL = 'https://safepaste-2e585-default-rtdb.firebaseio.com/'
+
+try:
+    firebase_admin.initialize_app(cred, {
+        'databaseURL': DATABASE_URL
+    })
+    db_ref = db.reference('pastes')
+except ValueError:
+    print("Firebase already initialized...")
+    db_ref = db.reference('pastes')
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
