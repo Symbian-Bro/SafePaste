@@ -2,6 +2,13 @@
 
 SafePaste is a simple, secure, cross-platform clipboard/text sharing tool. It allows you to send text from one machine to another by leveraging a Firebase Realtime Database as a temporary backend. All text is encrypted client-side before being sent, and decrypted only upon fetching, ensuring that the data on the server is not readable.
 
+<table>
+ <tr>
+  <td><img src="https://github.com/user-attachments/assets/83f64fd3-26b0-4225-8fbb-ced8b310ed3d" alt="SafePaste Send Tab" width="400"></td>
+  <td><img src="https://github.com/user-attachments/assets/ccb4389b-8e7d-4364-a4eb-a83487d913e5" alt="SafePaste Receive Tab" width="400"></td>
+ </tr>
+</table>
+
 ## Features
 
   * **Secure:** All data is encrypted locally using `cryptography.fernet` before being uploaded.
