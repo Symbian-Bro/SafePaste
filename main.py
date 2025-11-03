@@ -7,7 +7,7 @@ import base64
 from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from ui_generated import Ui_CommandLineTool
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, InvalidToken
 from firebase_admin import credentials, db
 
 cred = credentials.Certificate("serviceAccountKey.json")
@@ -46,9 +46,12 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def decrypt_string(encrypted_blob: bytes, key: bytes) -> str:
-        cipher = Fernet(key)
-        decrypted_bytes = cipher.decrypt(encrypted_blob)
-        return decrypted_bytes.decode('utf-8')
+        try:
+            cipher = Fernet(key)
+            decrypted_bytes = cipher.decrypt(encrypted_blob)
+            return decrypted_bytes.decode('utf-8')
+        except (InvalidToken, ValueError, UnicodeDecodeError):
+            print("Invalid ID")
 
     @staticmethod
     def random_string(length: int =  10) -> str:
