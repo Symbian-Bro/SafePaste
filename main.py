@@ -46,12 +46,11 @@ class MainWindow(QMainWindow):
 
     @staticmethod
     def decrypt_string(encrypted_blob: bytes, key: bytes) -> str:
-        try:
-            cipher = Fernet(key)
-            decrypted_bytes = cipher.decrypt(encrypted_blob)
-            return decrypted_bytes.decode('utf-8')
-        except (InvalidToken, ValueError, UnicodeDecodeError):
-            print("Invalid ID")
+        cipher = Fernet(key)
+        decrypted_bytes = cipher.decrypt(encrypted_blob)
+        return decrypted_bytes.decode('utf-8')
+        #except (InvalidToken, ValueError, UnicodeDecodeError):
+            #self.ui.statusbar.showMessage("Invalid ID. Try again!!", 2000)
 
     @staticmethod
     def random_string(length: int =  10) -> str:
@@ -78,17 +77,20 @@ class MainWindow(QMainWindow):
         self.ui.sendTextEdit.clear()
 
     def on_fetch_clicked(self):
-        input_text = self.ui.codeLineEdit.text().strip()
-        key_str, rand_str = input_text.split(" : ", 1)
-        key_str = key_str.strip()
-        rand_str = rand_str.strip()
+        try:
+            input_text = self.ui.codeLineEdit.text().strip()
+            key_str, rand_str = input_text.split(" : ", 1)
+            key_str = key_str.strip()
+            rand_str = rand_str.strip()
 
-        enc_blob_b64 = db_ref.child(rand_str).get()
-        key_bytes = base64.b64decode(key_str)
-        encrypted_blob_bytes = base64.b64decode(enc_blob_b64)
-        decrypted_text = self.decrypt_string(encrypted_blob_bytes, key_bytes)
-        self.ui.receiveTextEdit.setText(decrypted_text)
-        self.ui.statusbar.showMessage("Data fetched and decrypted successfully!", 2000)
+            enc_blob_b64 = db_ref.child(rand_str).get()
+            key_bytes = base64.b64decode(key_str)
+            encrypted_blob_bytes = base64.b64decode(enc_blob_b64)
+            decrypted_text = self.decrypt_string(encrypted_blob_bytes, key_bytes)
+            self.ui.receiveTextEdit.setText(decrypted_text)
+            self.ui.statusbar.showMessage("Data fetched and decrypted successfully!", 2000)
+        except (InvalidToken, ValueError, UnicodeDecodeError):
+            self.ui.statusbar.showMessage("Invalid ID. Try again!!", 2000)
 
     def on_copy_clicked(self):
         id_string = self.ui.idLabel.text()
