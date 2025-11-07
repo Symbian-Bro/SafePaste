@@ -419,3 +419,4 @@ FodyWeavers.xsd
 *.msp
 
 serviceAccountKey.json
+config.txt
