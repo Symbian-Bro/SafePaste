@@ -27,7 +27,7 @@ You must have Python 3 installed on your system.
 This project requires several Python packages. You can install them all using pip:
 
 ```bash
-pip install PyQt6 firebase-admin cryptography
+pip install -r requirements.txt
 ```
 
 ### 3\. Firebase Setup (Required)
@@ -47,20 +47,7 @@ This application uses **Firebase Realtime Database** to store the encrypted text
       * Start in **locked mode** (you can edit rules later if needed, but the app uses admin credentials).
       * After the database is created, copy its URL. It will look something like: `https://your-project-name-12345-default-rtdb.firebaseio.com/`.
 
-3.  **Update `main.py`:**
-
-      * Open the `main.py` file.
-      * Find the line `DATABASE_URL = '...'`.
-      * Replace the existing URL with **your new Realtime Database URL**:
-
-    <!-- end list -->
-
-    ```python
-    # Near the top of main.py
-    DATABASE_URL = 'https://your-project-name-12345-default-rtdb.firebaseio.com/'
-    ```
-
-4.  **Generate a Service Account Key:**
+3.  **Generate a Service Account Key:**
 
       * In the Firebase console, go to **Project Settings** (click the gear icon ⚙️ next to "Project Overview").
       * Go to the **Service accounts** tab.
@@ -68,19 +55,21 @@ This application uses **Firebase Realtime Database** to store the encrypted text
       * A warning will appear; click **"Generate key"** to confirm.
       * A JSON file will be downloaded to your computer.
 
-5.  **Add Key to Project:**
-
-      * Find the downloaded JSON file.
-      * **Rename the file to `serviceAccountKey.json`**.
-      * Move this `serviceAccountKey.json` file into the same directory as `main.py`.
-      * The `main.py` file is configured to look for this specific file name (`credentials.Certificate("serviceAccountKey.json")`). The provided `.gitignore` file is already set up to ignore this file, so it won't be accidentally committed to source control.
+4.  **Run & Configure the Application:**
+    * Run the application from your terminal:
+        ```bash
+        python3 main.py
+        ```
+    * On the first run, a **"Configurations"** setup dialog will appear.
+    * Provide your **Realtime Database URL** (from step 2) and the **service account JSON file** (from step 3).
+    * Click **"OK"** to save and launch the app.
 
 ## Usage Instructions
 
 After completing the setup, you can run the application from your terminal:
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 ### To Send Text
