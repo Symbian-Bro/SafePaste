@@ -39,6 +39,11 @@ class Ui_ApplicationSetup(object):
         self.buttonBox.setCenterButtons(True)
         self.buttonBox.setObjectName("buttonBox")
         self.verticalLayout.addWidget(self.buttonBox)
+        self.githubLink = QtWidgets.QLabel(parent=ApplicationSetup)
+        self.githubLink.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.githubLink.setOpenExternalLinks(True)
+        self.githubLink.setObjectName("githubLink")
+        self.verticalLayout.addWidget(self.githubLink)
 
         self.retranslateUi(ApplicationSetup)
         self.buttonBox.accepted.connect(ApplicationSetup.accept) # type: ignore
@@ -53,3 +58,4 @@ class Ui_ApplicationSetup(object):
         self.label_file.setText(_translate("ApplicationSetup", "Please provide your Firebase Admin Credentials (.json) :"))
         self.selectFileButton.setText(_translate("ApplicationSetup", "Select"))
         self.selectedFileLabel.setText(_translate("ApplicationSetup", "No file selected."))
+        self.githubLink.setText(_translate("ApplicationSetup", "<a href=\"https://github.com/Symbian-Bro/SafePaste\">Source Code</a>"))

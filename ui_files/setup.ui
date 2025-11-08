@@ -91,6 +91,19 @@
      </property>
     </widget>
    </item>
+    <item>
+        <widget class="QLabel" name="githubLink">
+         <property name="text">
+            <string>&lt;a href=&quot;https://github.com/Symbian-Bro/SafePaste&quot;&gt;Source Code&lt;/a&gt;</string>
+         </property>
+         <property name="alignment">
+            <set>Qt::AlignCenter</set>
+         </property>
+         <property name="openExternalLinks">
+            <bool>true</bool>
+         </property>
+        </widget>
+    </item>   
   </layout>
  </widget>
  <resources/>
