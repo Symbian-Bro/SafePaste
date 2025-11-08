@@ -12,7 +12,11 @@ from firebase_admin import credentials, db
 
 cred = credentials.Certificate("serviceAccountKey.json")
 
-DATABASE_URL = 'https://safepaste-2e585-default-rtdb.firebaseio.com/'
+with open("config.txt", "r") as config_file:
+    lines = config_file.readlines()
+    database_url = lines[0].strip()
+
+DATABASE_URL = database_url
 
 try:
     firebase_admin.initialize_app(cred, {
