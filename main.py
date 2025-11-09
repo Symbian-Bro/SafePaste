@@ -15,17 +15,17 @@
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import sys
-import os
 from PyQt6.QtWidgets import QApplication,QDialog
 from windowsnfunctions.config_window import ConfigWindow
 from pathlib import Path
 
 config_dir = Path.home() / ".safepaste"
 config_file = config_dir / "config.txt"
+key_file = config_dir / "serviceAccountKey.json"
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    if not(config_file.is_file() and os.path.isfile(config_dir/"serviceAccountKey.json")):
+    if not(config_file.is_file() and key_file.is_file()):
         window = ConfigWindow()
         result = window.exec()
         if result == QDialog.DialogCode.Rejected:
