@@ -58,4 +58,4 @@ class Ui_ApplicationSetup(object):
         self.label_file.setText(_translate("ApplicationSetup", "Please provide your Firebase Admin Credentials (.json) :"))
         self.selectFileButton.setText(_translate("ApplicationSetup", "Select"))
         self.selectedFileLabel.setText(_translate("ApplicationSetup", "No file selected."))
-        self.githubLink.setText(_translate("ApplicationSetup", "<a href=\"https://github.com/Symbian-Bro/SafePaste\">Source Code</a>"))
+        self.githubLink.setText(_translate("ApplicationSetup", "<a href=\"https://github.com/S1ddhaarth/SafePaste\">Source Code</a>"))

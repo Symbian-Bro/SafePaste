@@ -100,4 +100,4 @@ class Ui_CommandLineTool(object):
         self.codeLineEdit.setPlaceholderText(_translate("CommandLineTool", "Enter the unique ID!!"))
         self.fetchButton.setText(_translate("CommandLineTool", "FETCH"))
         self.modeTabWidget.setTabText(self.modeTabWidget.indexOf(self.receiveTab), _translate("CommandLineTool", "RECEIVE"))
-        self.githubLink.setText(_translate("CommandLineTool", "<a href=\"https://github.com/Symbian-Bro/SafePaste\">Source Code</a>"))
+        self.githubLink.setText(_translate("CommandLineTool", "<a href=\"https://github.com/S1ddhaarth/SafePaste\">Source Code</a>"))

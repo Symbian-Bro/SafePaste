@@ -36,6 +36,7 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         self.ui = Ui_CommandLineTool()
         self.ui.setupUi(self)
+        self.setFixedSize(420, 300)
         self.move(self.screen().availableGeometry().center() - self.frameGeometry().center())
         self.connect_signals()
         self.ui.idLabel.setWordWrap(True)
